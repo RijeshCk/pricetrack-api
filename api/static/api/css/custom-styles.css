@@ -1,0 +1,388 @@
+#image-div{background-image: url("../img/ajax-loader.svg");
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../img/glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+/*background-color: #ffffff;*/
+width: 38px;
+height: 38px;
+margin-left: 45%;
+margin-top: 6%;
+/*visibility:hidden;*/}
+/*#chart{
+    color: green;
+
+    width: 20%;
+    background-color: #d9534f;
+    border-radius: 5px;
+    color: white;
+    padding: .2%;
+    padding-left: 5%;
+    margin-top: 4%;
+    
+}*/
+@font-face {
+    
+    src: url('../fonts/fontawesome-webfont.eot') format('embedded-opentype'),
+         url('../fonts/fontawesome-webfont.woff') format('woff'),
+         url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+         url('../fonts/fontawesome-webfont.woff2') format('woff');
+    
+}
+
+
+.hehe{
+    color: red;
+    background-color: black;
+    font-color:green;
+    glyphicon glyphicon-off
+
+}
+.price{
+    font-size: 2em;
+    position: relative;
+    font-weight:bold ;
+    font-style: bolder;
+    /*background: r*/
+    border-radius: 5px;
+    padding-left: 2px;
+    color:rgb(66, 139, 202);;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.price-difference{ font-size: 2.3em;
+    position: relative;
+    font-weight:bold ;
+    font-style: bolder;
+    color:rgb(16, 139, 155);}
+.additional-info{
+    /*display: block;*/
+    margin-top: 10%;
+}
+.check_loggedin_class{
+    background: linear-gradient(-90deg, red, yellow);
+}
+
+.alert-danger
+{
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 5px solid #CF5D5D;
+    margin-left: 24%;
+    width: 50%;
+background: red; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(-90deg, red, yellow); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, red, yellow); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, red, yellow); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, red, yellow); /* Standard syntax */
+
+}
+.hide-logout{
+    visibility: hidden;
+    color: blue;
+}
+.warning-false{color: #000;
+transition: all linear 0.5s;
+  background-color: blue;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.warning-true{
+    width :550px;
+    height:40px;
+    left:50%;
+    box-shadow: 2px 2px 20px #888888;
+    background-color: green;
+    border-radius: 5px;
+    border-color: #ffffff;
+    color: white;
+    padding: 10px;
+
+    position: relative;
+    opacity: 1;
+    /*visibility: hidden;*/
+    -webkit-animation-name:example;
+    -webkit-animation-duration: 20s;
+    animation-name: example;
+    animation-duration: 20s;
+    float:left;
+
+}
+.error-true{
+    width :550px;
+    height:40px;
+    left:50%;
+    top:20px;
+    box-shadow: 2px 2px 20px #888888;
+    background-color: #d9534f;
+    border-radius: 5px;
+    border-color: #ffffff;
+    color: white;
+    padding: 10px;
+    /*float:left;*/
+    position: relative;
+    opacity: 1;
+    /*visibility: hidden;*/
+    -webkit-animation-name:example;
+    -webkit-animation-duration: 20s;
+    animation-name: example;
+    animation-duration: 20s;
+
+}
+/*@keyframes example{
+    0%   {background-color:red; left:50px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:600px; top:0px;}
+    75%  {background-color:green; left:800px; top:0px;}
+    100% {background-color:red; left:1000px; top:0px;}
+}*/
+
+@-webkit-keyframes example {
+50% {width:550px;height:40px;visibility: visible;opacity: 0;}
+}
+
+
+hr.message-inner-separator
+{
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+       #accordion .panel-heading { padding: 0;}
+#accordion .panel-title > a {
+	display: block;
+	padding: 0.4em 0.6em;
+    outline: none;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+#accordion .panel-title > a.accordion-toggle::before, #accordion a[data-toggle="collapse"]::before  {
+    content:"\e113";
+    float: left;
+    font-family: 'Glyphicons Halflings';
+	margin-right :1em;
+}
+#accordion .panel-title > a.accordion-toggle.collapsed::before, #accordion a.collapsed[data-toggle="collapse"]::before  {
+    content:"\e114";
+}
+.product-list{
+    margin-left: 10%;
+    width:75%;
+    margin-top: 5%;
+    position: static;
+}
+.aana:before{
+    color: red;
+    content:'\f077';
+    vertical-align: text-top;
+  }
+
+.chakka:before{
+    color: green;
+    content:'\f078';
+    vertical-align: text-top;
+
+}
+.img-div{
+    width: 100%;
+    border-color:#98bf21;
+    border-width: 20px;
+    height: 40%;
+}
+#alert-box{
+    visibility: hidden;
+    width: 50%;
+    position: relative;
+}
+.price{
+    position:static;
+    top: 1000px;
+    left:-100px;
+}
+/*.myModal{
+width: 600px;
+
+}
+.modal {
+    text-align:center;
+}*/
+/*.modal-body {
+    display: inline-block;
+    width: auto;
+    max-height: 100%;
+}*/
+.name-div{
+    position: relative;
+    margin-left: 10px;
+}
+.img-td{
+    width: 20%;
+}
+.delivery_date,#chart {
+color: #FCFCFC;
+white-space: nowrap;
+cursor: pointer;
+padding: 4px;
+font-weight: bolder;
+border-radius: 4px;
+margin-left: .5%;
+background-color: #5CB85C;
+/*display: inline-block;*/
+}
+.loadmore {
+margin-top:10%;
+margin-bottom: 10%;
+color: white;
+white-space: nowrap;
+cursor: pointer;
+padding-top: 10px ;
+font-weight: bolder;
+border-radius: 60px;
+width: 150px;
+height:50px;
+/*border-color: gray;*/
+/*border-style: solid;*/
+border-width: 2px;
+margin-left: 50%;
+text-align: center;
+background-color: #73BD79;
+
+/*box-shadow: 2px 2px 20px #888888;*/
+/*display: inline-block;*/
+}
+.loadmore:hover {
+margin-top:10%;
+margin-bottom: 10%;
+color: white;
+white-space: nowrap;
+cursor: pointer;
+padding-top: 10px ;
+font-weight: bolder;
+border-radius: 60px;
+width: 150px;
+height:50px;
+opacity:1;
+/*border-color: gray;*/
+/*border-style: solid;*/
+border-width: 2px;
+margin-left: 50%;
+text-align: center;
+background-color: #5BA561;
+box-shadow: 2px 2px 20px #888888;*/
+/*display: inline-block;*/
+}
+.no_loadmore{
+    visibility: hidden;
+    color: red;
+/*margin-top:10%;
+margin-bottom: 10%;
+color: red;
+white-space: nowrap;
+cursor: pointer;
+padding: 4px;
+font-weight: bolder;
+border-radius: 4px;
+margin-left: .5%;
+background-color: red;*/
+
+}
+.availability-td{
+    width: 20%;
+}
+#login,#signup{
+    margin-left: 25%;
+}
+#exampleInputEmail1,#exampleInputPassword1,#userid,#Email,#password,#reenterpassword
+{
+    width: 100%;
+    /*margin-left: 10%*/
+}
+.btn-block
+{
+    width: 100%
+}
+#add
+{
+    width: 90%,
+   
+}
+
+#myModal2
+{
+    min-width:600px;
+    left:-10%;
+}
+.css-form input.ng-invalid.ng-touched {
+    border-color: #FA787E;
+  }
+#filter
+{
+
+    margin-left: 150%;
+    width:150%;
+}
+a.tooltips {
+  position: relative;
+  display: inline;
+}
+a.tooltips span {
+  position: absolute;
+  width:140px;
+  color: #FFFFFF;
+  background: #000000;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px #800000;
+}
+a.tooltips span:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #000000;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+a:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.8;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
+}
+/*.css-form input.ng-invalid.ng-touched{
+    background-color: #000000;
+}*/
+    /*position: center;
+}
+
+}*/
