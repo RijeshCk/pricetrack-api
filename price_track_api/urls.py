@@ -20,6 +20,7 @@ import api.views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     url(r'^$', api.views.Endpoint.as_view()),
     url(r'^getall', api.views.GetallProducts.as_view()),
     url(r'^index', api.views.Index),
