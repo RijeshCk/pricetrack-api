@@ -99,14 +99,18 @@ WSGI_APPLICATION = 'price_track_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'price_track',
-        'USER':'root',
-        'PASSWORD':'passme'
-    }
-}
+#local settings 
+#DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'price_track',
+#         'USER':'root',
+#         'PASSWORD':'passme'
+#     }
+# }
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
