@@ -312,7 +312,7 @@
 			$scope.AddtoTrack=function(){
 				url1 = $scope.url;
 				myregex = /[a-zA-Z]/;
-				$http.get('http://127.0.0.1:8000/?url='+url1).then(
+				$http.get('https://pricetrack-api.herokuapp.com/?url='+url1).then(
 					function sucessCallback()
 					{
 					$scope.url='';
@@ -356,7 +356,7 @@
 			
 			$scope.login=function(){
 				var csrf='{{ csrf_token }}';
-				$http({method:'POST',url:'http://127.0.0.1:8000/login',data:{'username':$scope.username,'password':$scope.password,'type':$scope.aana},headers: {'X-CSRFToken' : csrf }}).then(function successCallback(response,status){
+				$http({method:'POST',url:'https://pricetrack-api.herokuapp.com/login',data:{'username':$scope.username,'password':$scope.password,'type':$scope.aana},headers: {'X-CSRFToken' : csrf }}).then(function successCallback(response,status){
 					console.log("login successfully");
 					$cookies["username"] = $scope.username
 					console.log($scope.loggedin_user);
@@ -385,7 +385,7 @@
 				$('image-div').show()
 				var csrf='{{ csrf_token }}';
 				console.log(csrf);
-				$http({method:'DELETE',url:'http://127.0.0.1:8000/login', headers: {'X-CSRFToken' : csrf }}).then(
+				$http({method:'DELETE',url:'https://pricetrack-api.herokuapp.com/login', headers: {'X-CSRFToken' : csrf }}).then(
 					function successCallback(response,status)
 					{
 						console.log("logout sucessfully");
@@ -399,7 +399,7 @@
 	
 			
 				console.log("listing section");
-				$http.get("http://127.0.0.1:8000/getall")
+				$http.get("https://pricetrack-api.herokuapp.com/getall")
 				.success(function(response,status)
 						{   $('#image-div').hide();
 								pagination_data = response.pagination
@@ -437,7 +437,7 @@
 				console.log(pagination_data.next_url);
 				if (pagination_data.next_url){
 
-				$http.get('http://127.0.0.1:8000/getall?page='+pagination_data.next_url)
+				$http.get('https://pricetrack-api.herokuapp.com/getall?page='+pagination_data.next_url)
 				.success(function(response,status)
 						{   $('#image-div').hide();
 								console.log("sucess call");
