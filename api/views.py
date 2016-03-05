@@ -223,7 +223,7 @@ class GetallProducts(ListAPIView):
 				data['product_previous_price'] = i.product_previous_price
 				current_price = data['price']
 				previous_price = data['product_previous_price']
-				price_diff = current_price - previous_price
+				price_diff = float(current_price) - float(previous_price)
 				data['price_diff'] = price_diff
 				product_list.append(data)
 			Data = {
