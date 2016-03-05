@@ -108,9 +108,11 @@ DATABASES = {
         'PASSWORD':'passme'
     }
 }
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
+try:
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
+except:
+    pass
 # TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -156,6 +158,6 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (
-#     os.path.join(PROJECT_ROOT, 'static'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
