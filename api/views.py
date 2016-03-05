@@ -125,7 +125,7 @@ class ValidationFailed(ParseError):
 class Endpoint(APIView):
 	
 	def get(self,request):
-		user = request.session["user_name"]
+		user = request.session.get("user_name")
 		url = request.GET["url"]
 		raw_asin = re.findall("product/(.*)/ref",url)
 		raw_asin2 = re.findall("dp/([A-Z0-9]{,10})",url)
