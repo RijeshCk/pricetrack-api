@@ -1,489 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-{% load static %}
-<title>Price track</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/static/api/js/jquery-1.11.1.min.js"></script>
-<script src="/static/api/js/angular.min.js"></script>
-<script src="/static/api/js/angular-animate.min.js"></script>
+    <meta charset="utf-8">
+    {% load static %}
+    <title>Price track</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/static/api/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/api/js/angular.min.js"></script>
+    <script src="/static/api/js/angular-animate.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="/static/api/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/static/api/css/bootstrap-responsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/api/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/api/css/bootstrap-responsive.css">
 
-<script src="/static/api/js/bootstrap.min.js"></script>
-<link href="/static/api/css/custom-styles.css" rel="stylesheet">
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="/static/api/js/jquery.cookie.js"></script>
-<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
-<script src="/static/api/js/angular-cookies.min.js"></script>
-<script src='/static/api/js/infinite-scroll.js'></script>
-<script src='/static/api/js/hichart-script.js'></script>
+    <script src="/static/api/js/bootstrap.min.js"></script>
+    <link href="/static/api/css/custom-styles.css" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="/static/api/js/jquery.cookie.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
+    <script src="/static/api/js/angular-cookies.min.js"></script>
+    <script src='/static/api/js/infinite-scroll.js'></script>
+    <script src='/static/api/js/hichart-script.js'></script>
 </head>
 <body ng-app="AddtotrackApp" ng-controller="Addtotrackcontroller" id="app1">
-<div class="container">
-		<div class="row">
-		<br>
-				<nav class="navbar navbar-default" role="navigation">
-						<div class="container-fluid">
-								 <div class="navbar-header">
-										<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-admin">
-												<span class="sr-only">Toggle Menu</span>
-												<span class="icon-bar"></span>
-												<span class="icon-bar"></span>
-												<span class="icon-bar"></span>
-										</button>
-										<a class="navbar-brand">Price Track <span class="glyphicon glyphicon-stats"></span></a>
-								</div>
-<form>
-								<div>
-		 
-		 {% csrf_token %}
-										<ul class="nav navbar-nav navbar-right">
-												<li class="hidden-sm hidden-xs">
-														<button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".bs-modal-sm" >
-														 {% verbatim %}
-														<span  href="#signup" ng-model="check_loggedin" ng-class='hehe'>
+    <div class="container">
+        <div class="row">
+            <br>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                   <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-admin">
+                        <span class="sr-only">Toggle Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">Price Track <span class="glyphicon glyphicon-stats"></span></a>
+                </div>
+                <form>
+                    <div>
 
-														{{check_loggedin}}
-														<!-- <div ng-model="loggedin_user">{{loggedin_user}}</div> -->
-																									 
-														
-														</button>
-														<button type="button" ng-click="logout()" ng-class="classlogout" class="btn btn-primary navbar-btn">
-														<span class="glyphicon glyphicon-off" class="btn btn-primary btn-lg">
-														{% endverbatim %}     
-														 
-												</li>
-										</ul>
-										<div>
-		</form>
-								<form class="navbar-form navbar-left" role="search">
-										<div class="form-group">
-												<input type="text" autocomplete='on' class="form-control" placeholder="Search" ng-model='search' id="filter">
-										</div>
-								</form>
-						 </div>
+                       {% csrf_token %}
+                       <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden-sm hidden-xs">
+                            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".bs-modal-sm" >
+                               {% verbatim %}
+                               <span  href="#signup" ng-model="check_loggedin" ng-class='hehe'>
 
-							</nav>
-		</div>
-</div>
-<div class="container">
-<div class="row">
-
-{% verbatim %}
-		<h2>Track Box</h2>
-					 <div id="custom-search-input">
-					 <div>
-					 <form name="AddForm">
-								<div class="input-group col-md-12" >
-										
-										<input type="text" class="search-query form-control" placeholder="Paste your product url here" id="search" ng-model="url" name="url" required ng-pattern="" >
-										<span ng-show='AddForm.url.$error.pattern'>{{url}}</span>
-										<span class="input-group-btn" >
-												<button class="btn btn-danger" type="button" id="add" ng-click="AddtoTrack()" >
-														<span class=" glyphicon glyphicon-eye-open"></span>
-												</button>
-										</span>
-								</div>
-								<div  ng-class="btnClass"  ng-model="message" ng-show="checkErrors">
-									{{message}}
-									<strong ng-model="error_message"></strong>
-								</span>
-							</div>
-						</form>
-
-						</div>
-						</div>
-{% endverbatim %}
-	</div>
-</div>
+                                {{check_loggedin}}
+                                <!-- <div ng-model="loggedin_user">{{loggedin_user}}</div> -->
 
 
-<!--login modal-->
-<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
+                            </button>
+                            <button type="button" ng-click="logout()" ng-class="classlogout" class="btn btn-primary navbar-btn">
+                                <span class="glyphicon glyphicon-off" class="btn btn-primary btn-lg">
+                                    {% endverbatim %}     
 
-		<div class="modal-content">
-	<!--   <div class="modal-header"> -->
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<!-- </div> -->
-				<br>
-				<div class="bs-example bs-example-tabs">
-						<ul id="myTab" class="nav nav-tabs">
-							<li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
-							<li class=""><a href="#signup" data-toggle="tab">Register</a></li>
-							<li class=""><a href="#why" data-toggle="tab">Why?</a></li>
+                                </li>
+                            </ul>
+                            <div>
+                            </form>
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <input type="text" autocomplete='on' class="form-control" placeholder="Search" ng-model='search' id="filter">
+                                </div>
+                            </form>
+                        </div>
 
-						</ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
 
-				</div>
-			<div class="modal-body">
-				<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in" id="why">
-				<p>We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.</p>
-				<p></p><br> Please contact <a mailto:href="rijesh36@gmail.com"></a>rijesh36@gmail.com</a> for any other inquiries.</p>
-				</div>
-				<div class="tab-pane fade active in" id="signin">
-							
-							<form >
-							<div class="form-group">
-							{% csrf_token  %}
-								<!-- <label for="exampleInputEmail1">Email address</label> -->
-								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model='username' autofocus='true'>
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"  ng-model='password'>
-							</div>
-			
-							<button  ng-click="login()" type="button" class="btn btn-success btn-block">Submit</button>
-						<!--  <script type="in/Login"></script> -->
+                    {% verbatim %}
+                    <h2>Track Box</h2>
+                    <div id="custom-search-input">
+                       <div>
+                           <form name="AddForm">
+                            <div class="input-group col-md-12" >
 
-						</form>
-						<a href="http://127.0.0.1:8000/LIlogin">login with linkedin</a>
-						{%verbatim%}
-			<strong ng-model="error_message">{{login_error_message}}</strong>
-		{% endverbatim%}
-						
-				</div>
-				<div class="tab-pane fade" id="signup">
-						<form class="css-form" name='myForm' >
-									<fieldset>
-									<!-- Sign Up Form -->
-									<!-- Text input-->
-									<div class="control-group">
-									<label for="exampleInputPassword1"></label>
-				 
-										<div class="controls">
-											<input id="Email" name="Email" class="form-control" type="email" ng-model='Email' required>
-								 
-										</div>
-									</div>
-									
-									<!-- Text input-->
-									<div class="control-group">
-					 
-										<div class="controls">
-										<label for="exampleInputPassword1"></label>
-										<!--  <label for="exampleInputPassword1">Password</label> -->
-											<input id="userid" name="userid" class="form-control" type="text" ng-model='userid' required>
-										</div>
-									</div>
-									
-									<!-- Password input-->
-									<div class="control-group">
-									<label for="exampleInputPassword1"></label>
-								<!--  <label for="exampleInputPassword1">Password</label> -->
-										<div class="controls">
-											<input id="password" name="password1" ng-model='password1' class="form-control" type="password" placeholder='Password'  required>
-					
-										</div>
-									</div>
-									
-									<!-- Text input-->
-									<div class="control-group">
-							<label for="exampleInputPassword1"></label>
-										<div class="controls">
-											<input id="reenterpassword" class="form-control" name="password2" ng-model='password2' type="password" placeholder="Re-Enter Password:" class="input-large" required="">
-										</div>
-									</div>
-									<br>
-								
-									<!-- Button -->
-									<div class="control-group">
-										<label class="control-label" for="confirmsignup"></label>
-										<div class="controls">
-											<button id="confirmsignup" name="confirmsignup" class="btn btn-success btn-block">Sign Up</button>
-										</div>
-									</div>
+                                <input type="text" class="search-query form-control" placeholder="Paste your product url here" id="search" ng-model="url" name="url" required ng-pattern="" >
+                                <span ng-show='AddForm.url.$error.pattern'>{{url}}</span>
+                                <span class="input-group-btn" >
+                                    <button class="btn btn-danger" type="button" id="add" ng-click="AddtoTrack()" >
+                                        <span class=" glyphicon glyphicon-eye-open"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <div  ng-class="btnClass"  ng-model="message" ng-show="checkErrors">
+                                {{message}}
+                                <strong ng-model="error_message"></strong>
+                            </span>
+                        </div>
+                    </form>
 
-										<span style="color:red" ng-show="myForm.Email.$dirty && myForm.Email.$invalid">
-											<span ng-show='myForm.Email.$error.email'>Invalid Email</span>
-											<span ng-show='myForm.Email.$error.required'>Email address is required</span>
-											</span>
-											<span ng-show='myForm.userid.$dirty && myForm.userid.$error.required'>
-												<span ng-show='myForm.userid.$error.required'>Username is Required</span>
-											</span>
-											<!-- <span ng-show='myForm.password1.$dirty && myForm.password2.$dirty'> -->
-												<span ng-show='(myForm.password1.$dirty && myForm.password2.$dirty ) && (myForm.password1.$modelValue!=myForm.password2.$modelValue || myForm.password1.$modelValue!=myForm.password2.$modelValue )'>Missmatched Passwords</span>
-											<!-- </span> -->
-									</fieldset>
-						</form>
+                </div>
+            </div>
+            {% endverbatim %}
+        </div>
+    </div>
 
-			</div>
-			
-		</div>
-			</div>
-			<div class="modal-footer">
-			<center>
-			
 
-				<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-				</center>
-			</div>
-		</div>
-	</div>
-</div>
-<!--login modal-->
-<!--loading image-->
-<div id="image-div" class="image-div"></div>
-{% verbatim %}
-<div class="product-list" id="app2"> 
-<div class="bs-example">
-		<table class="table table-hover">
-				<tbody>
-						<!-- <div infinite-scroll='loadMore()' infinite-scroll-distance=0 >click here </div> -->
+    <!--login modal-->
+    <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
 
-						<tr ng-repeat="name in names|filter:search" ng-if='name.name'>
-						
-								<td class="img-td"><div class="img-div"><img class="img-div" ng-src={{name.image}}></div></td>
-								<td class="name-div">
-										<a href=http://www.amazon.in/gp/product/{{name.id}}>
-											{{name.name}}
-										</a>
-										<span class="additional-info">
-										<a data="{{name.id}}" id="chart" ng-click=chartval(name.id) data-something="hello" data-toggle="modal" onclick=Test(this) data-target="#myModal2">
-										
-											<p class="glyphicon glyphicon-signal" id="chart">chart</p>
-										</a>
-										<span class="delivery_date">
-										{{name.availability}}
-									</span>
+            <div class="modal-content">
+                <!--   <div class="modal-header"> -->
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <!-- </div> -->
+                <br>
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+                        <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+                        <li class=""><a href="#why" data-toggle="tab">Why?</a></li>
 
-									</span>
-									
-								</td>
-								<td>
-									<ul>
-										  <li><a href="#home"></a><span class="price">{{name.price|number:2}}</span></li>
-										  <li><a href="#home"></a><span class="price-difference">{{name.price_diff|number:2}}</span><span ng-class="{chakka:name.price_diff<0,aana:name.price_diff>0}"></span></li>
-									
-									</ul>
-								<!-- <span class="price">
-									<!-- <a class="tooltips" > --><!-- <span>Current Price</span> -->
-								<!-- 	</a>
-								</span>
-								<span class='price-difference'>
-									<span  >
-										<a class="tooltips" href="#"><span>Price Difference</span>
-									</span>
-								</span>
-									</a> --> 
-								</td>
+                    </ul>
 
-						</tr>
-						
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in" id="why">
+                            <p>We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.</p>
+                            <p></p><br> Please contact <a mailto:href="rijesh36@gmail.com"></a>rijesh36@gmail.com</a> for any other inquiries.</p>
+                        </div>
+                        <div class="tab-pane fade active in" id="signin">
 
-				</tbody>
+                            <form >
+                                <div class="form-group">
+                                    {% csrf_token  %}
+                                    <!-- <label for="exampleInputEmail1">Email address</label> -->
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model='username' autofocus='true'>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"  ng-model='password'>
+                                </div>
 
-		</table>
-		<div ng-click='loadMore()' ng-class='check_loadmore' >Load More</div>
-</div>
-{% endverbatim %}
+                                <button  ng-click="login()" type="button" class="btn btn-success btn-block">Submit</button>
+                                <!--  <script type="in/Login"></script> -->
 
-<!-- Modal -->
-<div id="myModal2" class="modal fade" role="dialog">
-	<div class="modal-dialog">
+                            </form>
+                            <a href="http://127.0.0.1:8000/LIlogin">login with linkedin</a>
+                            {%verbatim%}
+                            <span ng-model="error_message" ng-class="login_error_class">{{login_error_message}}</span>
+                            {% endverbatim%}
 
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Price History</h4>
-			</div>
-			<div class="modal-body" >
-				<div id="container" style="min-width: 550px; height: 400px; margin: 0 auto"></div>
-			</div>
-	
-		</div>
+                        </div>
+                        <div class="tab-pane fade" id="signup">
+                            <form class="css-form" name='myForm' >
+                                <fieldset>
+                                    <!-- Sign Up Form -->
+                                    <!-- Text input-->
+                                    <div class="control-group">
+                                        <label for="exampleInputPassword1"></label>
 
-	</div>
+                                        <div class="controls">
+                                            <input id="Email" name="Email" class="form-control" type="email" ng-model='Email' required>
+
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Text input-->
+                                    <div class="control-group">
+
+                                        <div class="controls">
+                                            <label for="exampleInputPassword1"></label>
+                                            <!--  <label for="exampleInputPassword1">Password</label> -->
+                                            <input id="userid" name="userid" class="form-control" type="text" ng-model='userid' required>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Password input-->
+                                    <div class="control-group">
+                                        <label for="exampleInputPassword1"></label>
+                                        <!--  <label for="exampleInputPassword1">Password</label> -->
+                                        <div class="controls">
+                                            <input id="password" name="password1" ng-model='password1' class="form-control" type="password" placeholder='Password'  required>
+
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Text input-->
+                                    <div class="control-group">
+                                        <label for="exampleInputPassword1"></label>
+                                        <div class="controls">
+                                            <input id="reenterpassword" class="form-control" name="password2" ng-model='password2' type="password" placeholder="Re-Enter Password:" class="input-large" required="">
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="confirmsignup"></label>
+                                        <div class="controls">
+                                            <button id="confirmsignup" name="confirmsignup" class="btn btn-success btn-block">Sign Up</button>
+                                        </div>
+                                    </div>
+
+                                    <span style="color:red" ng-show="myForm.Email.$dirty && myForm.Email.$invalid">
+                                        <span ng-show='myForm.Email.$error.email'>Invalid Email</span>
+                                        <span ng-show='myForm.Email.$error.required'>Email address is required</span>
+                                    </span>
+                                    <span ng-show='myForm.userid.$dirty && myForm.userid.$error.required'>
+                                        <span ng-show='myForm.userid.$error.required'>Username is Required</span>
+                                    </span>
+                                    <!-- <span ng-show='myForm.password1.$dirty && myForm.password2.$dirty'> -->
+                                    <span ng-show='(myForm.password1.$dirty && myForm.password2.$dirty ) && (myForm.password1.$modelValue!=myForm.password2.$modelValue || myForm.password1.$modelValue!=myForm.password2.$modelValue )'>Missmatched Passwords</span>
+                                    <!-- </span> -->
+                                </fieldset>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <center>
+
+
+                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--login modal-->
+    <!--loading image-->
+    <div id="image-div" class="image-div"></div>
+    {% verbatim %}
+    <div class="product-list" id="app2"> 
+        <div class="bs-example">
+            <table class="table table-hover">
+                <tbody>
+                    <!-- <div infinite-scroll='loadMore()' infinite-scroll-distance=0 >click here </div> -->
+
+                    <tr ng-repeat="name in names|filter:search" ng-if='name.name'>
+
+                        <td class="img-td"><div class="img-div"><img class="img-div" ng-src={{name.image}}></div></td>
+                        <td class="name-div">
+                            <a href=http://www.amazon.in/gp/product/{{name.id}}>
+                                {{name.name}}
+                            </a>
+                            <span class="additional-info">
+                                <a data="{{name.id}}" id="chart" ng-click=chartval(name.id) data-something="hello" data-toggle="modal" onclick=Test(this) data-target="#myModal2">
+
+                                    <p class="glyphicon glyphicon-signal" id="chart">chart</p>
+                                </a>
+                                <span class="delivery_date">
+                                    {{name.availability}}
+                                </span>
+                                <a id="chart" data-toggle="modal" data-target="#emailModal">
+
+                                    <p class="glyphicon glyphicon-signal" id="chart">email</p>
+                                </a>
+
+                            </span>
+
+                        </td>
+                        <td>
+                            <ul>
+                              <li><a href="#home"></a><span class="price">{{name.price|number:2}}</span></li>
+                              <li><a href="#home"></a><span class="price-difference">{{name.price_diff|number:2}}</span><span ng-class="{chakka:name.price_diff<0,aana:name.price_diff>0}"></span></li>
+
+                          </ul>
+                                <!-- <span class="price">
+                                <!-- <a class="tooltips" > --><!-- <span>Current Price</span> -->
+                                <!--    </a>
+                                </span>
+                                <span class='price-difference'>
+                                    <span  >
+                                        <a class="tooltips" href="#"><span>Price Difference</span>
+                                    </span>
+                                </span>
+                            </a> --> 
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+            <div ng-click='loadMore()' ng-class='check_loadmore' >Load More</div>
+        </div>
+        {% endverbatim %}
+
+        <!-- Modal -->
+        <div id="myModal2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Price History</h4>
+                    </div>
+                    <div class="modal-body" >
+                        <div id="container" style="min-width: 550px; height: 400px; margin: 0 auto"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div id="emailModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Notification</h4>
+                        <!-- <div class="form-group"> -->
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <div id="container" style="min-width: auto; height: auto;overflow:auto">
+                            <div class="control-group">
+                                <label  for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group">
+
+                                  <div class="input-group-addon"><strong>₹</strong></div>
+                                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                  <div class="input-group-addon">.00</div>
+
+                              </div>
+                              <br>
+
+                              <div class="input-group">
+
+                                  <div class="input-group-addon"><span class='glyphicon glyphicon-envelope'></span></div>
+
+                                  <input type="text" class="form-control" id="exampleInputAmounts" placeholder="Email Address">
+                              </div>
+
+                              <br>
+                              <button type="button" class="btn btn-info pull-right">Activate</button>
+                              &nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-danger pull-right">Close</button>
+
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 <script>
-	
-	var app = angular.module('AddtotrackApp',['ngCookies','infinite-scroll']);
-	app.controller('Addtotrackcontroller',function($scope,$http,$timeout,$cookies,$cookieStore,$window)
-		{
-			// element.find('[autofocus]').focus()
-			element = $window.document.getElementById('exampleInputEmail1');
-			element.focus()
-			$scope.AddtoTrack=function(){
-				url1 = $scope.url;
-				myregex = /[a-zA-Z]/;
-				$http.get('https://pricetrack-api.herokuapp.com/?url='+url1).then(
-					function sucessCallback()
-					{
-					$scope.url='';
-					$scope.message= "Product has been added to our Tracking system";
-					$scope.clickthis=true;
-					$scope.checkErrors=true
-					$scope.btnClass ='warning-true'
-					$timeout(function checkErrors(){
-						$scope.checkErrors=false
-						},3600);
-				}, 
-					function errorCallback()
-					{
-						console.log(url1);
-						if (!url1){
-						$scope.message="Please provide url"
-					}
-					else{
-						$scope.message='Sorry we could\'t process your request. Please check your url'}     
-						$scope.checkErrors=true
-						$scope.btnClass ='error-true'
-						$timeout(function checkErrors(){
-						$scope.checkErrors=false
-						},3600);
-						$scope.url = ''
-			 return false
-			}
-			);}
-			$scope.Email = "username@exampledomain.com" 
-			password1 = $scope.password1;
-				password2 = $scope.password2;
-				console.log(password1,password2);
 
-			$scope.signup = function(){
-				var csrf ='{{csrf_token}}';
-				password1 = $scope.password1;
-				password2 = $scope.password2;
-				console.log(password1,password2);
-				// if pass
-			}
-			
-			$scope.login=function(){
-				var csrf='{{ csrf_token }}';
-				$http({method:'POST',url:'https://pricetrack-api.herokuapp.com/login',data:{'username':$scope.username,'password':$scope.password,'type':$scope.aana},headers: {'X-CSRFToken' : csrf }}).then(function successCallback(response,status){
-					console.log("login successfully");
-					$cookies["username"] = $scope.username
-					console.log($scope.loggedin_user);
-					$window.location.reload();
-					},
-					function errorCallback(response,status){
+    var app = angular.module('AddtotrackApp',['ngCookies','infinite-scroll']);
+    app.controller('Addtotrackcontroller',function($scope,$http,$timeout,$cookies,$cookieStore,$window)
+    {
+            // element.find('[autofocus]').focus()
+            element = $window.document.getElementById('exampleInputEmail1');
+            base_url = $window.location.origin
+            console.log(base_url)
+            element.focus()
+            $scope.AddtoTrack=function(){
+                url1 = $scope.url;
+                myregex = /[a-zA-Z]/;
+                $http.get(base_url+'/?url='+url1).then(
+                    function sucessCallback()
+                    {
+                        $scope.url='';
+                        $scope.message= "Product has been added to our Tracking system";
+                        $scope.clickthis=true;
+                        $scope.checkErrors=true
+                        $scope.btnClass ='warning-true'
+                        $timeout(function checkErrors(){
+                            $scope.checkErrors=false
+                        },3600);
+                    }, 
+                    function errorCallback()
+                    {
+                        console.log(url1);
+                        if (!url1){
+                            $scope.message="Please provide url"
+                        }
+                        else{
+                            $scope.message='Sorry we could\'t process your request. Please check your url'}     
+                            $scope.checkErrors=true
+                            $scope.btnClass ='error-true'
+                            $timeout(function checkErrors(){
+                                $scope.checkErrors=false
+                            },3600);
+                            $scope.url = ''
+                            return false
+                        }
+                        );}
+$scope.Email = "username@exampledomain.com" 
+password1 = $scope.password1;
+password2 = $scope.password2;
+console.log(password1,password2);
 
-						$scope.login_error_message='Invalid Credentials';
-					}
-					)
-			}
+$scope.signup = function(){
+    var csrf ='{{csrf_token}}';
+    password1 = $scope.password1;
+    password2 = $scope.password2;
+    console.log(password1,password2);
+                // if pass
+            }
+            
+            $scope.login=function(){
+                var csrf='{{ csrf_token }}';
+                $http({method:'POST',url:base_url+'/login',data:{'username':$scope.username,'password':$scope.password,'type':$scope.aana},headers: {'X-CSRFToken' : csrf }}).then(function successCallback(response,status){
+                    console.log("login successfully");
+                    $cookies["username"] = $scope.username
+                    console.log($scope.loggedin_user);
+                    $window.location.reload();
+                },
+                function errorCallback(response,status){
 
-			$scope.loggedin_user = $cookies["username"]
-			if ($scope.loggedin_user){
-				$scope.check_loggedin=$scope.loggedin_user;
-				$scope.hehe='glyphicon glyphicon-user';
-			}
-			else{
-			$scope.check_loggedin='Login/signup';
-			$scope.hehe='glyphicon glyphicon-user'
-			$scope.classlogout='hide-logout';
-		}
+                    $scope.login_error_message='Invalid Credentials';
+                    $scope.login_error_class='login-error-true';
+                }
+                )
+            }
 
-
-			$scope.logout=function(){
-				$('image-div').show()
-				var csrf='{{ csrf_token }}';
-				console.log(csrf);
-				$http({method:'DELETE',url:'https://pricetrack-api.herokuapp.com/login', headers: {'X-CSRFToken' : csrf }}).then(
-					function successCallback(response,status)
-					{
-						console.log("logout sucessfully");
-						$cookies["username"]='';
-						$cookies.remove('username');
-						$window.location.reload();
-				},function errorCallback(){console.log('errrrr');
-				$window.location.reload();
-				$cookies['username']='';});
-			}
-	
-			
-				console.log("listing section");
-				$http.get("https://pricetrack-api.herokuapp.com/getall")
-				.success(function(response,status)
-						{   $('#image-div').hide();
-								pagination_data = response.pagination
-								$scope.names = response.product_list;
-								if(pagination_data.next_url){
-									$scope.check_loadmore = 'loadmore'
-									console.log('page')
-								}
-								if(!pagination_data.next_url){
-									console.log('no next');
-									$scope.check_loadmore = 'no_loadmore'
-								}
-								
-						}
-				).error($timeout(function(data, status, headers, config, statusText){
-					if(status == 429)
-						{
-							$scope.error_message= "You have exceed daily Limit";
-						}
-						else if (status == 400)
-						{
-							$scope.error_message = "No products in tracklist"
-						}
-					$('#image-div').hide();
-				 },3));
-
-			// if(pagination_data.next_url){
-			// 	$scope.loadmore = 'loadmore'
- 		// 	}
- 		// 	else{
- 		// 		$scope.loadmore = 'no_loadmore'
- 		// 	}
-			// $scope.check_loadmore = 'loadmore'
-			$scope.loadMore = function(){
-				console.log(pagination_data.next_url);
-				if (pagination_data.next_url){
-
-				$http.get('https://pricetrack-api.herokuapp.com/getall?page='+pagination_data.next_url)
-				.success(function(response,status)
-						{   $('#image-div').hide();
-								console.log("sucess call");
-								pagination_data = response.pagination
-								s = response.product_list;
-								if(pagination_data.next_url){
-								$scope.check_loadmore = 'loadmore'}
-								if(!pagination_data.next_url){
-									$scope.check_loadmore = 'no_loadmore'
-								}
-								
-								for (var i=0 ;i<=s.length;i++){
-								 	if ($scope.names.indexOf(s[i])==-1){
-								 									
-								 		$scope.names.push(s[i]);
-								 	}
-								 }
-								
-								return $scope.names
-								
-						}
-				).error(function(data, status, headers, config, statusText){
-					// $scope.check_loadmore = 'no_loadmore'
-					if(status == 429)
-						{
-							$scope.error_message= "You have exceed daily Limit";
-						}
-						else if (status == 400)
-						{
-							$scope.error_message = "No products in tracklist"
-						}
-						else
-						{
-							console.log(statusText);
-						}
-					$('#image-div').hide();
-				 });
-			}
-			// else{
-			// 	$scope.check_loadmore = 'no_loadmore'
-			// }
-
-		}
+            $scope.loggedin_user = $cookies["username"]
+            if ($scope.loggedin_user){
+                $scope.check_loggedin=$scope.loggedin_user;
+                $scope.hehe='glyphicon glyphicon-user';
+            }
+            else{
+                $scope.check_loggedin='Login/signup';
+                $scope.hehe='glyphicon glyphicon-user'
+                $scope.classlogout='hide-logout';
+            }
 
 
-			}); 
+            $scope.logout=function(){
+                $('image-div').show()
+                var csrf='{{ csrf_token }}';
+                console.log(csrf);
+                $http({method:'DELETE',url:base_url+'/login', headers: {'X-CSRFToken' : csrf }}).then(
+                    function successCallback(response,status)
+                    {
+                        console.log("logout sucessfully");
+                        $cookies["username"]='';
+                        $cookies.remove('username');
+                        $window.location.reload();
+                    },function errorCallback(){console.log('errrrr');
+                    $window.location.reload();
+                    $cookies['username']='';});
+            }
+
+            
+            console.log("listing section");
+            $http.get(base_url+"/getall")
+            .success(function(response,status)
+                {   $('#image-div').hide();
+                pagination_data = response.pagination
+                $scope.names = response.product_list;
+                if(pagination_data.next_url){
+                    $scope.check_loadmore = 'loadmore'
+                    console.log('page')
+                }
+                if(!pagination_data.next_url){
+                    console.log('no next');
+                    $scope.check_loadmore = 'no_loadmore'
+                }
+
+            }
+            ).error($timeout(function(data, status, headers, config, statusText){
+                if(status == 429)
+                {
+                    $scope.error_message= "You have exceed daily Limit";
+                }
+                else if (status == 400)
+                {
+                    $scope.error_message = "No products in tracklist"
+                }
+                $('#image-div').hide();
+            },3));
+
+            // if(pagination_data.next_url){
+            //  $scope.loadmore = 'loadmore'
+        //  }
+        //  else{
+        //      $scope.loadmore = 'no_loadmore'
+        //  }
+            // $scope.check_loadmore = 'loadmore'
+            $scope.loadMore = function(){
+                console.log(pagination_data.next_url);
+                if (pagination_data.next_url){
+
+                    $http.get(base_url+'/getall?page='+pagination_data.next_url)
+                    .success(function(response,status)
+                        {   $('#image-div').hide();
+                        console.log("sucess call");
+                        pagination_data = response.pagination
+                        s = response.product_list;
+                        if(pagination_data.next_url){
+                            $scope.check_loadmore = 'loadmore'}
+                            if(!pagination_data.next_url){
+                                $scope.check_loadmore = 'no_loadmore'
+                            }
+
+                            for (var i=0 ;i<=s.length;i++){
+                                if ($scope.names.indexOf(s[i])==-1){
+
+                                    $scope.names.push(s[i]);
+                                }
+                            }
+
+                            return $scope.names
+
+                        }
+                        ).error(function(data, status, headers, config, statusText){
+                    // $scope.check_loadmore = 'no_loadmore'
+                    if(status == 429)
+                    {
+                        $scope.error_message= "You have exceed daily Limit";
+                    }
+                    else if (status == 400)
+                    {
+                        $scope.error_message = "No products in tracklist"
+                    }
+                    else
+                    {
+                        console.log(statusText);
+                    }
+                    $('#image-div').hide();
+                });
+                    }
+            // else{
+            //  $scope.check_loadmore = 'no_loadmore'
+            // }
+
+        }
+
+
+    }); 
 </script>
 </body>
 </html>

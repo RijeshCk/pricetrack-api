@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
+import jsonfield.fields
 
 
 class Migration(migrations.Migration):
@@ -38,7 +39,7 @@ class Migration(migrations.Migration):
                 ('product_url', models.URLField()),
                 ('product_id', models.CharField(unique=True, max_length=200)),
                 ('product_previous_price', models.FloatField(default=0)),
-                ('procuct_extra_data', models.TextField()),
+                ('procuct_extra_data', jsonfield.fields.JSONField(null=True)),
                 ('product_availability', models.CharField(max_length=50)),
                 ('product_image', models.CharField(max_length=200, blank=True)),
             ],

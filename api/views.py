@@ -217,7 +217,7 @@ class GetallProducts(ListAPIView):
 				data["id"] = i.product_id
 				data["name"] = i.product_name
 				data["availability"] = i.product_availability
-				data["extra_data"]=i.procuct_extra_data
+				data["extra_data"]=i.product_extra_data
 				data["image"] = i.product_image
 				data['price'] = i.product_price
 				data['product_previous_price'] = i.product_previous_price
