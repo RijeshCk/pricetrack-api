@@ -11,3 +11,4 @@ django-oauth-toolkit==0.9.0
 oauth2==1.5.211
 MySQL-python
 dragline
+jsonfield
