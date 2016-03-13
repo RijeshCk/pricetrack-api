@@ -251,9 +251,9 @@
                                 <span class="delivery_date">
                                     {{name.availability}}
                                 </span>
-                                <a id="chart" data-toggle="modal" data-target="#emailModal">
+                                <a id="chart" data-toggle="modal" data-target="#emailModal" ng-click=notifyme(name.name) data="{{name.name}}">
 
-                                    <p class="glyphicon glyphicon-signal" id="chart">email</p>
+                                    <p class="glyphicon glyphicon-envelope" id="chart"> Email </p>
                                 </a>
 
                             </span>
@@ -310,11 +310,14 @@
 
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Notification</h4>
-                        <!-- <div class="form-group"> -->
 
+                    <div class="modal-header">
+                    {{product_name}}
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        {%verbatim%}
+                        <h4 class="modal-title" ng-model='product_name'>Price Notification for {{product_name}} </h4>
+                        <!-- <div class="form-group"> -->
+                        {%endverbatim%}
                     </div>
 
 
@@ -324,7 +327,7 @@
                                 <label  for="exampleInputAmount">Amount (in dollars)</label>
                                 <div class="input-group">
 
-                                  <div class="input-group-addon"><strong>₹</strong></div>
+                                  <div class="input-group-addon"><strong> $ </strong></div>
                                   <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
                                   <div class="input-group-addon">.00</div>
 
@@ -348,7 +351,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <script>
@@ -448,6 +450,11 @@ $scope.signup = function(){
                     },function errorCallback(){console.log('errrrr');
                     $window.location.reload();
                     $cookies['username']='';});
+            }
+            $scope.notifyme=function(name){
+                console.log(name);
+                $scope.product_name = name;
+
             }
 
             
