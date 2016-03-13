@@ -8,6 +8,7 @@ import datetime
 def add_product(url,user):
 	
 	raw_asin = re.findall("product/([A-Z0-9]{,10})/",url)
+	print "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",raw_asin
 	if raw_asin:
 		asin = raw_asin[0]
 	else:
