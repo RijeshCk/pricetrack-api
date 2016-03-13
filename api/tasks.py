@@ -7,7 +7,7 @@ import datetime
 @shared_task
 def add_product(url,user):
 	
-	raw_asin = re.findall("product/(.*)/ref",url)
+	raw_asin = re.findall("product/([A-Z0-9]{,10})/",url)
 	if raw_asin:
 		asin = raw_asin[0]
 	else:
