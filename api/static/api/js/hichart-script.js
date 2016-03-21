@@ -20,7 +20,7 @@ $(function () {
 																k.push(null)
 															}
 															else{ 
-														k.push(val.price);
+														k.push(parseInt(val.price));
 														}
 														j.push(f);
 														console.log(k)
