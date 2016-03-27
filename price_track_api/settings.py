@@ -147,7 +147,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost/1'
 CELERYBEAT_SCHEDULE = {
     'every-day-refresh': {
         'task': 'api.tasks.refresh',
-        'schedule': timedelta(minute = 1),
+        'schedule': timedelta(minutes = 1),
     },
 }
 
