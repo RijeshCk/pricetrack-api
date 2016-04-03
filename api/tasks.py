@@ -28,7 +28,7 @@ def add_product(url,user):
 		price = data["price"]
 		availability = data["availability"]
 		product_id = data["product_id"]
-		DatafromSite = ProductData(product_price = price,product_name = data["name"],product_availability = availability,product_url = url,product_id=product_id,product_image=data["image"])
+		DatafromSite = ProductData(product_price = price,product_previous_price=price,product_name = data["name"],product_availability = availability,product_url = url,product_id=product_id,product_image=data["image"])
 		DatafromSite.save()
 		PriceData = PriceDetails(price=price,product=DatafromSite,date=datetime.datetime.now())
 		PriceData.save()
