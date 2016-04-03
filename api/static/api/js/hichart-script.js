@@ -5,7 +5,7 @@ $(function () {
 														var j =new Array();
 														id=$(id).attr("data")
 														
-								$.getJSON('http://127.0.0.1:8000/pricehistory/id='+id+'?format=json', function(data) {
+								$.getJSON('https://pricetrack-api.herokuapp.com/pricehistory/id='+id+'?format=json', function(data) {
 										// Populate series
 										$.each(data,function(key,val)
 												{   
