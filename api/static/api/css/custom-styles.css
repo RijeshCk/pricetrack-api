@@ -1,4 +1,10 @@
-#image-div{background-image: url("../img/ajax-loader.svg");
+#image-div{
+  background-image: url("../img/ajax-loader.svg");
+  width: 36px;
+  height: 38px;
+  right:50%;
+  position: absolute;
+}
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
@@ -48,7 +54,7 @@ margin-top: 6%;
 
 }
 .price{
-    font-size: 2em;
+    font-size: 1em;
     position: relative;
     font-weight:bold ;
     font-style: bolder;
@@ -62,13 +68,14 @@ ul {
     margin: 0;
     padding: 0;
 }
-.price-difference{ font-size: 2.3em;
+.price-difference{ 
+    font-size: 1em;
     position: relative;
     font-weight:bold ;
     font-style: bolder;
     color:rgb(16, 139, 155);}
 .additional-info{
-    /*display: block;*/
+    display: block;
     margin-top: 10%;
 }
 .check_loggedin_class{
@@ -230,10 +237,10 @@ hr.message-inner-separator
 
 }
 .img-div{
-    width: 100%;
-    border-color:#98bf21;
-    border-width: 20px;
-    height: 40%;
+    /*min-height: 10px;*/
+    /*min-width: 10px;*/
+    height: 128px;
+    width: 98%;
 }
 #alert-box{
     visibility: hidden;
@@ -260,6 +267,7 @@ width: 600px;
 .name-div{
     position: relative;
     margin-left: 10px;
+    width:44%;
 }
 .img-td{
     width: 20%;
