@@ -37,13 +37,11 @@ def add_product(url,user):
 
 @shared_task
 def refresh():
-	
+	print "refresh beging heres"
 	products_to_refresh = ProductData.objects.all()
 	# products_to_refresh = ProductData.objects.filter(product_id = 'B00VNNUEHC')
 	for i in products_to_refresh:
-		
 		url = i.product_url
-		print '>>>>>',url
 		data = parser.parse(url)
 		price = data["price"]
 		product_availability = data['availability']

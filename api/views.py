@@ -169,7 +169,6 @@ class PriceHistory(APIView):
 class GetallProducts(ListAPIView):
 	
 	throttle_scope='test'
-	print "aaaaaaaaaaaa"
 	def PagenateThis(self,objects,current_page,pages):
 		paginator = Paginator(objects,pages)
 		try:
