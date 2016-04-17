@@ -51,5 +51,8 @@ def refresh():
 		i.product_availability = product_availability
 		i.product_previous_price  = i.product_price
 		i.product_price = price
-		i.save()
+		try:
+			i.save()
+		except:
+			print "in except url is ",url
 		print "updating......",i.product_id
