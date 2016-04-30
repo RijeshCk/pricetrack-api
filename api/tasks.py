@@ -39,7 +39,6 @@ def add_product(url,user):
 def refresh():
 	print "refresh beging heres"
 	products_to_refresh = ProductData.objects.all()
-	# products_to_refresh = ProductData.objects.filter(product_id = 'B00VNNUEHC')
 	for i in products_to_refresh:
 		url = i.product_url
 		data = parser.parse(url)

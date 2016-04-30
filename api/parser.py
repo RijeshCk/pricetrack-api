@@ -7,7 +7,7 @@ def parse(url):
 	
 	request_headers = {"Accept-Encoding":"gzip","User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"}
 	response = Request(url,headers=request_headers).send().text
-	print url
+	print "processed : ",url
 	parser=HtmlParser(response)
 	raw_price1 = parser.xpath("//span[@id='priceblock_saleprice']/text()")
 	raw_price2 = parser.xpath("//span[@id='priceblock_ourprice']/text()")
@@ -22,14 +22,10 @@ def parse(url):
 	name = ''.join(raw_name).strip()
 	price=0.0
 	if raw_price1:
-		print ">>>>>>>>>>>>>>ddddddddddd"
 		price = float(raw_price1[0].replace(',','').strip())
 	if raw_price2:
-		print "sssssssssssssssssaaaaaaaaaaaa",raw_price2
 		price = float(raw_price2[0].replace(',','').strip())
 	
-
-	print ">>>>>>>>>>price",price
 	brand = ''.join(raw_brand).strip()
 	availability = ''.join(raw_availability).strip()
 	raw_product_id = re.findall("dp/([A-Z0-9]{,10})",url)
@@ -40,8 +36,6 @@ def parse(url):
 	else:
 		product_id = re.findall("product/(.*)",url)[0]
 
-	
-	 
 	data={
 			"price":price,
 			"availability":availability,
