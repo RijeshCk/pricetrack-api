@@ -132,6 +132,14 @@ AUTH_PROFILE_MODULE= 'linkedin.UserProfile'
 LINKEDIN_TOKEN='750l026y5ehsuh'
 LINKEDIN_SECRET='b72h0CFesFgLqcME'
 LOGIN_URL='/login'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'rijesh471@gmail.com'
+SERVER_EMAIL = 'rijesh471@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rijesh471@gmail.com'
+EMAIL_HOST_PASSWORD = '7736648471'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)

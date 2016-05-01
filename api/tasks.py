@@ -3,6 +3,8 @@ from api.models import *
 import parser
 import re
 import datetime
+from scripts import send_email_notification
+
 
 @shared_task
 def add_product(url,user):
@@ -38,7 +40,9 @@ def add_product(url,user):
 @shared_task
 def refresh():
 	print "....................refresh beging here..........."
+	send_email_notification('Product Refresh started')
 	products_to_refresh = ProductData.objects.all()
+
 	for i in products_to_refresh:
 		url = i.product_url
 		data = parser.parse(url)
@@ -55,3 +59,4 @@ def refresh():
 		except:
 			print "in except url is ",url
 		print "updating......",i.product_id
+	send_email_notification('Product Refresh Completed')
