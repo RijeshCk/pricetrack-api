@@ -4,7 +4,7 @@ import parser
 import re
 import datetime
 from scripts import send_email_notification
-
+import requests
 
 @shared_task
 def add_product(url,user):
