@@ -157,6 +157,10 @@ CELERYBEAT_SCHEDULE = {
         'task': 'api.tasks.refresh',
         'schedule': timedelta(hours = 15),
     },
+    'every-hour-refresh':{
+    'task':'api.tasks.keep_alive_task',
+    'schedule':timedelta(minutes=1),
+    }
 }
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))

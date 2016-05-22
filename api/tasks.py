@@ -60,3 +60,9 @@ def refresh():
 			print "in except url is ",url
 		print "updating......",i.product_id
 	send_email_notification('Product Refresh Completed')
+
+@shared_task
+def keep_alive_task():
+	print "in keep alive task"
+	response = requests.get("https://pricetrack-api.herokuapp.com/index")
+	print response
