@@ -159,7 +159,7 @@ CELERYBEAT_SCHEDULE = {
     },
     'every-hour-refresh':{
     'task':'api.tasks.keep_alive_task',
-    'schedule':timedelta(minutes=1),
+    'schedule':timedelta(hours=1),
     }
 }
 
