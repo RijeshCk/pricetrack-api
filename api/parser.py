@@ -12,7 +12,7 @@ def parse(url):
 	raw_price1 = parser.xpath("//span[@id='priceblock_saleprice']/text()")
 	raw_price2 = parser.xpath("//span[@id='priceblock_ourprice']/text()")
 	raw_availability = parser.xpath("//div[@id='availability']//text()")
-	raw_name = parser.xpath("//h1//text()")
+	raw_name = parser.xpath("//h1[@id='title']//text()")
 	raw_brand = parser.xpath("//a[@id='brand']//text()")
 	raw_img = parser.xpath("//div[@class='imgTagWrapper']//img/@data-a-dynamic-image")
 	if raw_img:
