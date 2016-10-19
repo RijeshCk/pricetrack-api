@@ -14,6 +14,7 @@ class ProductData(models.Model):
 	product_image = models.CharField(max_length=500,blank=True)
 
 class PriceDetails(models.Model):
+	product_id = models.CharField(max_length=200,unique=True)
 	price = models.FloatField()
 	product = models.ForeignKey(ProductData)
 	date = models.DateTimeField(auto_now_add=True)

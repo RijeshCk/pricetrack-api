@@ -12,3 +12,4 @@ oauth2==1.5.211
 MySQL-python
 dragline
 jsonfield
+dbhash

@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     url(r'^$', api.views.Endpoint.as_view()),
     url(r'^getall', api.views.GetallProducts.as_view()),
-    url(r'^index', api.views.Index),
+    url(r'^index', api.views.Endpoint.as_view()),
     url(r'^pricehistory/id=(?P<id>(\w+))',api.views.PriceHistory.as_view()),
     url(r'^login',api.views.Login.as_view()),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
